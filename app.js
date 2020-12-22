@@ -1,4 +1,4 @@
-function data () = {
+function dinosaurData (){
     const dinosaurs =[
         {
             "species": "Triceratops",
@@ -77,27 +77,39 @@ function data () = {
 };
     // Create Dino Constructor
 
-const DinoConstructor (data, unitsOfMeasure) {
-    this.species = data.species;
-    this.weight = data.weight;
-    this.height = data.height
-    this.diet = data.diet;
-    this.where = data.where;
-    this.when = data.when;
-    this.fact = data.fact;
+		function DinoConstructor (dinosaurData, unitsOfMeasure) {
+    this.species = dinosaurData.species;
+    this.weight = dinosaurData.weight;
+    this.height = dinosaurData.height
+    this.diet = dinosaurData.diet;
+    this.where = dinosaurData.where;
+    this.when = dinosaurData.when;
+    this.fact = dinosaurData.fact;
 }
 
 (function convertor(){
 	if (units === 'metric') {
-		this.weight = Math.round(data.weight / 2.21);
-		this.height = Math.round(data.height * 2.54);
+		this.weight = Math.round(dinosaurData.weight / 2.21);
+		this.height = Math.round(dinosaurData.height * 2.54);
 } else {
-		this.weight = data.weight;
-		this.height = data.height;
+		this.weight = dinosaurData.weight;
+		this.height = dinosaurData.height;
 }
 })();
     // Create Dino Objects
-
+		function createDinosaur(units) {
+			const dinos = dinosaurData();
+			const dinosArray = [];
+	
+			dinos.forEach(function (dino) {
+					dinosArray.push(new DinoConstructor(dino, units));
+			});
+	
+			// Insert the human placeholder here so that iteration works properly
+			// in the grid element construction.  Human should be in the centre square.
+			dinosArray.splice(4, 0, 'human placeholder');
+			return dinoArray;
+	}
 
     // Create Human Object
 
@@ -117,7 +129,8 @@ const DinoConstructor (data, unitsOfMeasure) {
 
 
     // Generate Tiles for each Dino in Array
-  
+
+	
         // Add tiles to DOM
 
     // Remove form from screen
@@ -126,13 +139,13 @@ const DinoConstructor (data, unitsOfMeasure) {
 // On button click, prepare and display infographic
 
 //Change the metric/imperial system function
+
 function uomChange() {
 	if (document.getElementById('metric').checked) {
-			document.getElementById('metric-form').style.display = 'block';
-			document.getElementById('imperial-form').style.display = 'none';
+			document.getElementById('metric-system').style.display = 'block';
+			document.getElementById('imperial-system').style.display = 'none';
 	} else {
-			document.getElementById('metric-form').style.display = 'none';
-			document.getElementById('imperial-form').style.display = 'block';
+			document.getElementById('metric-system').style.display = 'none';
+			document.getElementById('imperial-system').style.display = 'block';
 	}
-
 }

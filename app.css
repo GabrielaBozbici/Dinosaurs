@@ -130,9 +130,9 @@ p {
 .imperial-height{
     border: none;
 }
-/* .imperial-system{
+.imperial-system{
     display: none;
-} */
+}
 
 #metric {
     margin-right: 20px;
