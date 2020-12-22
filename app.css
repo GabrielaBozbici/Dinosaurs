@@ -124,6 +124,19 @@ p {
     max-width: 400px;
     margin: 0 auto;
 }
+.uomSystem {
+    border: 1px dashed #008000;
+}
+.imperial-height{
+    border: none;
+}
+/* .imperial-system{
+    display: none;
+} */
+
+#metric {
+    margin-right: 20px;
+}
 
 form p {
     margin-bottom: 0.3em;
@@ -153,18 +166,20 @@ select {
     display: block;
 }
 
-#btn {
+#btn, #again-btn {
     display: inline-block;
     background: #ccc;
     padding: 0.8em;
     margin: 1.2em auto;
     transition: ease 0.3s all;
+    border: none;
 }
 
-#btn:hover {
+#btn:hover, .again-btn:hover {
     background: #777;
     color: #fff;
     cursor: pointer;
+    border: none;
 }
 
 /* Footer */

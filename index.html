@@ -23,12 +23,44 @@
     <form id="dino-compare">
         <div class="form-container">
             <p>Name:</p>
-            <input id="name" class="form-field__full" type="name" name="name">
-            <p>Height</p>
-            <label>Feet: <input id="feet" class="form-field__short" type="number" name="feet"></label>
-            <label>inches: <input id="inches" class="form-field__short" type="number" name="inches"></label>
-            <p>Weight:</p>
-            <label><input id="weight" class="form-field__full" type="number" name="weight">lbs</label>
+						<input id="name" class="form-field__full" type="name" name="name">
+						<!-- Options for metric or imperial units selection -->
+            <fieldset class='uomSystem'>
+							<legend>
+									<p>Units</p>
+							</legend>
+							<label for="metric">Metric:</label>
+							<input type="radio" id="metric" name="units" value="metric" onclick="uomChange()" checked>
+							<label for="imperial">Imperial:</label>
+							<input type="radio" id="imperial" name="units" value="imperial" onclick="uomChange()">
+						</fieldset>
+						<!--//end of Options for metric or imperial units selection -->
+						<!-- Metric system elements-->
+            <div id="metric-system" class="metric-system">
+							<label for="height-metric">
+									<p>Height (cm)</p>
+							</label>
+							<input id="height-metric" class="form-field__full" type="number">
+							<label for="weight-metric">
+									<p>Weight (kg)</p>
+							</label>
+							<input id="weight-metric" class="form-field__full" type="number">
+						</div>
+						<!--//end of Metric system elements-->
+
+						<!-- Imperial system elements -->
+            <div id="imperial-system" class="imperial-system">
+							<p>Height(ft,in)</p>
+							<label for="feet">Feet:</label>
+							<input id="feet" class="form-field__short" type="number">
+							<label for="inches">Inches:</label>
+							<input id="inches" class="form-field__short" type="number">
+							<label for="weight-imperial">
+									<p>Weight (lbs)</p>
+							</label>
+							<input id="weight-imperial" class="form-field__full" type="number" name="weight">
+						</div>
+						<!--//end of Imperial system elements -->
             <p>Diet:</p>
             <select id="diet" class="form-field__full" name="diet">
                 <option>Herbavor</option>
@@ -39,7 +71,8 @@
         </div>
     </form>
     <!-- .grid to attach tiles to -->
-    <main id="grid"></main>
+		<main id="grid"></main>
+		<button id="again-btn" class="again-btn">Compare Again</button>
     <footer>
         <!-- Include information source -->
         <p class="fine-print">Data Sourced from <a href="https://www.wikipedia.org/">Wikipedia.org</a>, all numbers are approximations.</p>

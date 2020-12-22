@@ -124,3 +124,15 @@ const DinoConstructor (data, unitsOfMeasure) {
 
 
 // On button click, prepare and display infographic
+
+//Change the metric/imperial system function
+function uomChange() {
+	if (document.getElementById('metric').checked) {
+			document.getElementById('metric-form').style.display = 'block';
+			document.getElementById('imperial-form').style.display = 'none';
+	} else {
+			document.getElementById('metric-form').style.display = 'none';
+			document.getElementById('imperial-form').style.display = 'block';
+	}
+
+}
