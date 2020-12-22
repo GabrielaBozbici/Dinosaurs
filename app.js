@@ -112,7 +112,29 @@ function dinosaurData (){
 	}
 
     // Create Human Object
-
+		function collectHumanData() {
+			let humanHeight, humanWeight, units;
+	
+			if (document.getElementById('metric').checked) {
+				humanHeight = document.getElementById('height-metric').value;
+				humanWeight = document.getElementById('weight-metric').value;
+					units = 'metric';
+			} else {
+				humanHeight = (document.getElementById('feet').value * 12) + Number(document.getElementById('inches').value);
+				humanWeight = document.getElementById('weight-imperial').value;
+					units = 'imperial';
+			}
+	
+			const humanData = {
+					name: document.getElementById('name').value,
+					humanHeight: humanHeight,
+					humanWeight: humanWeight,
+					diet: document.getElementById('diet').value,
+					units: units
+			};
+			console.log('human data:', humanData)
+			return humanData;
+	}
     // Use IIFE to get human data from form
 
 
