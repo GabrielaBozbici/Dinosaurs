@@ -1,3 +1,6 @@
+const humanForm = document.getElementById('dino-compare');
+const gridContainer = document.getElementById('grid');
+
 function dinosaurData (){
     const dinosaurs =[
         {
@@ -112,29 +115,55 @@ function dinosaurData (){
     // Create Human Object
 	
     // Use IIFE to get human data from form
-		function collectHumanData() {
-			let humanHeight, humanWeight, units;
+		(function collectHumanData() {
+
+			let name= document.getElementById('name').value;
+			let humanHeight= humanHeight;
+			let humanWeight= humanWeight;
+			let diet= document.getElementById('diet').value;
+			let units= units;
 	
 			if (document.getElementById('metric').checked) {
 				humanHeight = document.getElementById('height-metric').value;
 				humanWeight = document.getElementById('weight-metric').value;
-					units = 'metric';
+				units = 'metric';
 			} else {
 				humanHeight = (document.getElementById('feet').value * 12) + Number(document.getElementById('inches').value);
 				humanWeight = document.getElementById('weight-imperial').value;
-					units = 'imperial';
+				units = 'imperial';
 			}
-	
-			const humanData = {
-					name: document.getElementById('name').value,
-					humanHeight: humanHeight,
-					humanWeight: humanWeight,
-					diet: document.getElementById('diet').value,
-					units: units
-			};
-			console.log('human data:', humanData)
-			return humanData;
-	};
+
+
+			function getName() {
+        if (!name || name === "") {
+            throw new Error("Name filed can not be empty!");
+        }
+        return name;
+    	}
+
+			function getHeight() {
+        if (!humanHeight || humanHeight === "") {
+            throw new Error("Height fileds can not be empty!");
+        }
+        return humanHeight;
+			}
+		
+			function getWeight() {
+				if (!humanWeight || humanWeight === "") {
+						throw new Error("Weight filed can not be empty!");
+				}
+				return humanWeight;
+			}
+
+			return {
+				getName: getName,
+				getHeight: getHeight,
+				getWeight: getWeight,
+				diet: diet,
+				units:units
+		}
+	})();
+	console.log('human: ', HumanData)
 
     // Create Dino Compare Method 1: Weight
 		compareWeight= function (humanData) {
@@ -212,10 +241,12 @@ function dinosaurData (){
         // Add tiles to DOM
 
     // Remove form from screen
-
+		function removeForm() {
+			humanForm.style.display = "none";
+			gridContainer.style.display = "flex";
+	}
 
 // On button click, prepare and display infographic
-
 
 //Change the metric/imperial system function
 
