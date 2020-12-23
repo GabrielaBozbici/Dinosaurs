@@ -77,25 +77,23 @@ function dinosaurData (){
 };
     // Create Dino Constructor
 
-		function DinoConstructor (dinosaurData, unitsOfMeasure) {
+	function DinoConstructor (dinosaurData, unitsOfMeasure) {
     this.species = dinosaurData.species;
-    this.weight = dinosaurData.weight;
+		this.weight = dinosaurData.weight;
     this.height = dinosaurData.height
     this.diet = dinosaurData.diet;
     this.where = dinosaurData.where;
     this.when = dinosaurData.when;
-    this.fact = dinosaurData.fact;
+		this.fact = dinosaurData.fact;
+		
+	// 	if (units === 'metric') {
+	// 		this.weight = Math.round(dinosaurData.weight / 2.21);
+	// 		this.height = Math.round(dinosaurData.height * 2.54);
+	// } else {
+	// 		this.weight = dinosaurData.weight;
+	// 		this.height = dinosaurData.height;
+	// }
 }
-
-(function convertor(){
-	if (units === 'metric') {
-		this.weight = Math.round(dinosaurData.weight / 2.21);
-		this.height = Math.round(dinosaurData.height * 2.54);
-} else {
-		this.weight = dinosaurData.weight;
-		this.height = dinosaurData.height;
-}
-})();
     // Create Dino Objects
 		function createDinosaur(units) {
 			const dinos = dinosaurData();
@@ -104,14 +102,16 @@ function dinosaurData (){
 			dinos.forEach(function (dino) {
 					dinosArray.push(new DinoConstructor(dino, units));
 			});
-	
+	console.log('dinosArray: ', dinosArray);
 			// Insert the human placeholder here so that iteration works properly
 			// in the grid element construction.  Human should be in the centre square.
-			dinosArray.splice(4, 0, 'human placeholder');
-			return dinoArray;
+			dinosArray.splice(4, 0, 'placeholder for human');
+			return dinosArray;
 	}
 
     // Create Human Object
+	
+    // Use IIFE to get human data from form
 		function collectHumanData() {
 			let humanHeight, humanWeight, units;
 	
@@ -134,31 +134,88 @@ function dinosaurData (){
 			};
 			console.log('human data:', humanData)
 			return humanData;
+	};
+
+    // Create Dino Compare Method 1: Weight
+		compareWeight= function (humanData) {
+			if (document.getElementById('metric').checked) {
+				humanData.weight = document.getElementById('weight-metric').value;
+				uom = 'kilograms';
+			} else {
+				humanData.weight = document.getElementById('weight-imperial').value;
+				uom = 'stones';
+			}
+
+			const weightDifference= this.weight - humanData.weight;
+			if (weightDifference > 1) {
+					return `${this.species} weighed with ${weightDifference} ${uom} more than you!`;
+			}
+			if (weightDifference < 1) {
+					return `You weigh with ${weightDifference} ${uom} more than ${this.species}!`;
+			}
+			return `Your weight is the same as ${this.species}'s!`;
+
 	}
-    // Use IIFE to get human data from form
-
-
-    // Create Dino Compare Method 1
-    // NOTE: Weight in JSON file is in lbs, height in inches. 
-
     
-    // Create Dino Compare Method 2
-    // NOTE: Weight in JSON file is in lbs, height in inches.
-
+    // Create Dino Compare Method 2: Diet
+		compareDiet= function (humanData) {
+			if (humanData.diet === this.diet) {
+					return `${humanData.name}, you are ${humanDiet} and ${this.species} was too!`;
+			} else {
+					return `${humanData.name}, you are ${humanDiet}, but ${this.species} was ${this.diet}.`;
+			}
+	}
     
-    // Create Dino Compare Method 3
-    // NOTE: Weight in JSON file is in lbs, height in inches.
+    // Create Dino Compare Method 3: Height
+		compareHeight= function (humanHeight) {
 
+			if (document.getElementById('metric').checked) {
+				humanData.height = document.getElementById('height-metric').value;
+					uom = 'meters';
+			} else {
+				humanData.height = (document.getElementById('feet').value * 12) + Number(document.getElementById('inches').value);
+					uom = 'feet';
+			}
 
-    // Generate Tiles for each Dino in Array
+			const heightDifference= this.height - humanHeight;
 
+			if (heightDifference > 1) {
+					return `${this.species} was with ${heightDifference} ${uom} taller than you!`;
+			}
+			if (heightDifference < 1) {
+					return `You are with ${heightDifference} ${uom} taller than ${this.species}!`;
+			}
+			return `Your height as ${this.species}'s!`;
+	}
+
+		// Generate Tiles for each Dino in Array
+		function createDinoElement(dinoData, humanData) {
+			let fact;
+			const randomNumber = dinoData.species === 'Pigeon' ? 2 : Math.round(Math.random() * 5);
+			switch (randomNumber) {
+					case 0: fact = `The ${dinoData.species} lived in ${dinoData.where}.`; break;
+					case 1:fact = `The ${dinoData.species} lived in the ${dinoData.when} period.`; break;
+					case 2:fact = dinoData.fact; break;
+					case 3:fact = dinoData.compareWeight(humanData.weight); break;
+					case 4:fact = dinoData.compareHeight(humanData.height);break;
+					case 5:fact = dinoData.compareDiet(humanData.diet);break;
+					default: fact = 'Dinosaurs are cool!';
+			}
 	
+			// Create the new grid item with title, image, and chosen fact
+			const newDiv = document.createElement('div');
+			newDiv.className = 'grid-item';
+			newDiv.innerHTML = `<h3>${dinoData.species}</h3><img src="images/${(dinoData.species.toLowerCase())}.png" alt="image of ${dinoData.species}"><p>${fact}</p>`;
+	
+			return newDiv;
+	}
         // Add tiles to DOM
 
     // Remove form from screen
 
 
 // On button click, prepare and display infographic
+
 
 //Change the metric/imperial system function
 

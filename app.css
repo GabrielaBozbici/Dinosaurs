@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     background: rgb(111, 208, 224);
-    background: linear-gradient(0deg,rgb(111, 208, 224) 0%, rgb(171, 228, 167) 100%);
+    background: linear-gradient(0deg,rgb(111, 208, 224) 0%, rgb(255, 204, 221) 100%);
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     min-height: 100vh;
@@ -173,6 +173,7 @@ select {
     margin: 1.2em auto;
     transition: ease 0.3s all;
     border: none;
+    margin-left: 25%;
 }
 
 #btn:hover, .again-btn:hover {
