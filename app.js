@@ -143,7 +143,7 @@ function dinosaurData (){
 				uom = 'kilograms';
 			} else {
 				humanData.weight = document.getElementById('weight-imperial').value;
-				uom = 'stones';
+				uom = 'pounds';
 			}
 
 			const weightDifference= this.weight - humanData.weight;
