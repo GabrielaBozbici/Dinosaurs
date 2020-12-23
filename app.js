@@ -174,7 +174,7 @@ function dinosaurData (){
 					uom = 'meters';
 			} else {
 				humanData.height = (document.getElementById('feet').value * 12) + Number(document.getElementById('inches').value);
-					uom = 'feet';
+					uom = 'inches';
 			}
 
 			const heightDifference= this.height - humanHeight;
