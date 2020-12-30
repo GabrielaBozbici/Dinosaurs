@@ -182,6 +182,9 @@ select {
     cursor: pointer;
     border: none;
 }
+#error-msg{
+    color: rgb(140, 36, 36);
+}
 
 /* Footer */
 .fine-print {
