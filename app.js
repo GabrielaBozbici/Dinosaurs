@@ -135,7 +135,6 @@ function Dinosaur (species, weight, height, diet, where, when, fact, image){
 	})();
 	}
 
-
 	// Create Dino Compare Method 1: DIET
 	// NOTE: Weight in JSON file is in lbs, height in inches. 
 	Dinosaur.prototype.compareDiet = function(diet,name){
@@ -200,6 +199,20 @@ function Dinosaur (species, weight, height, diet, where, when, fact, image){
 
 	// On button click, prepare and display infographic
 	document.getElementById("btn").addEventListener("click", function () {
+		let human = getHuman()
+		//field validation
+		if (!human.name || human.name === "") {
+			createErrorElem("Name filed can not be empty!");
+			return;
+			}
+		if (!human.height || human.height === "") {
+			createErrorElem("Height filed can not be empty!");
+			return;
+			}
+			if (!human.weight || human.weight === "") {
+			createErrorElem("Weight filed can not be empty!");
+			return;
+			}
 	// Generate Tiles for each Dino in Array
 	function getGridItem(species, imageUrl, fact) {
 		let gridItemDiv = document.createElement("div");
@@ -224,6 +237,18 @@ function Dinosaur (species, weight, height, diet, where, when, fact, image){
 		}
 	
 		return gridItemDiv;
+	}
+	//Generate error messages for form validation
+	function createErrorElem(message){
+		let errorDiv = document.createElement("div");
+		errorDiv.id= "error-msg";
+	
+		// add msg
+		let errortxt = document.createElement("h4");
+		errortxt.innerText = message;
+		errorDiv.appendChild(errortxt);
+	
+		document.getElementById("error").appendChild(errorDiv);
 	}
 	let facts= []
 	for(let index in dinos){
@@ -252,6 +277,7 @@ function Dinosaur (species, weight, height, diet, where, when, fact, image){
 	}
 
 	// Remove form from screen
+	document.getElementById("dino-compare").style.display = "none";
 });
 
 
