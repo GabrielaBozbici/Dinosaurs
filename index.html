@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
     <link href="app.css" rel="stylesheet">
     <!-- Link to app.js with defer till HTML render -->
-    <script defer src="app.js"></script>
+    <script defer src="apps.js"></script>
 </head>
 <body>
     <header>
@@ -24,7 +24,7 @@
     <form id="dino-compare">
         <div class="form-container">
             <p>Name:</p>
-						<input id="name" class="form-field__full" type="name" name="name">
+						<input id="name" value="Gabriela" class="form-field__full" type="name" name="name">
 						<!-- Options for metric or imperial units selection -->
             <fieldset class='uomSystem'>
 							<legend>
@@ -41,11 +41,11 @@
 							<label for="height-metric">
 									<p>Height (cm)</p>
 							</label>
-							<input id="height-metric" class="form-field__full" type="number">
+							<input id="height-metric" value="55" class="form-field__full" type="number">
 							<label for="weight-metric">
 									<p>Weight (kg)</p>
 							</label>
-							<input id="weight-metric" class="form-field__full" type="number">
+							<input id="weight-metric" value="55" class="form-field__full" type="number">
 						</div>
 						<!--//end of Metric system elements-->
 
@@ -68,7 +68,8 @@
                 <option>Omnivor</option>
                 <option>Carnivor</option>
             </select>
-            <div id="btn" onclick="collectHumanData()">Compare Me!</div>
+						<div id="btn">Compare Me!</div>
+						<div id="error"></div>
         </div>
     </form>
     <!-- .grid to attach tiles to -->
