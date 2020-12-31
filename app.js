@@ -292,3 +292,5 @@ if (document.getElementById('metric').checked) {
 		document.getElementById('imperial-system').style.display = 'block';
 }
 }
+
+//Used ideas of: https://github.com/jeffcad/Udacity-Intermediate-JavaScript-Nanodegree-Project-1
