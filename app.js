@@ -250,9 +250,7 @@ function Dinosaur (species, weight, height, diet, where, when, fact, image){
 	
 		document.getElementById("error").appendChild(errorDiv);
 	}
-	let facts= []
-	for(let index in dinos){
-		let dino = dinos[index];
+	dinos.forEach((dino, index)=>{
 		const randomNumber = dino.species === 'Pigeon' ? 2 : Math.round(Math.random()*5);
 		switch(randomNumber){
 			case 0:fact = `The ${dino.species} lived in ${dino.where}.`; break;
@@ -263,7 +261,6 @@ function Dinosaur (species, weight, height, diet, where, when, fact, image){
 			case 5:fact = dino.compareDiet(human.diet, human.name);break;
 			default:fact = 'Dinosaurs are cool!';
 		}
-		facts.push(fact)
 		// Add tiles to DOM
 		let gridDiv = getGridItem(dino.species, dino.image, fact);
 		document.getElementById("grid").appendChild(gridDiv);
@@ -274,7 +271,7 @@ function Dinosaur (species, weight, height, diet, where, when, fact, image){
 				document.getElementById("grid")
 						.appendChild(humanTileDiv);
 		}
-	}
+	})
 
 	// Remove form from screen
 	document.getElementById("dino-compare").style.display = "none";
